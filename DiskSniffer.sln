@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskSniffer", "DiskSniffer\DiskSniffer.csproj", "{52353670-1277-44E4-9C68-1788F08B43FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Files", "ArachNGIN.Files\ArachNGIN.Files.csproj", "{21FE4EC9-B716-43BA-9124-08439AC740AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{52353670-1277-44E4-9C68-1788F08B43FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52353670-1277-44E4-9C68-1788F08B43FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52353670-1277-44E4-9C68-1788F08B43FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

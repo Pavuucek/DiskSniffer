@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiskSniffer.Forms;
 using ArachNGIN.Files;
+
 namespace DiskSniffer
 {
     static class Program
@@ -18,6 +19,7 @@ namespace DiskSniffer
         /// </summary>
         public static QuakePAKFilesystem PakFS;
 
+        public static MainForm mainform;
         /// <summary>
         /// Hlavní vstupní bod aplikace.
         /// </summary>
@@ -27,7 +29,7 @@ namespace DiskSniffer
             PakFS = new QuakePAKFilesystem(ATemp.AppDir, ATemp.AppTempDir);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(mainform = new MainForm());
         }
     }
 }

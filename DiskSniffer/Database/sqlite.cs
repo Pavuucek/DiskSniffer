@@ -19,21 +19,22 @@ namespace DiskSniffer.Database
         public const int i_RequiredDbVersion = 1;
         public const string f_NewDbScript = @"sql\create_db_01.sql";
         public const string f_DataFile="data.ds";
-        private SQLiteConnection connection;
+        public SQLiteConnection connection;
 
         public sqlite(string FileName)
         {
             string datafile=Program.ATemp.AppDir + f_DataFile;
             if (!File.Exists(datafile)) CreateDatabase(datafile);
-            connection = new SQLiteConnection("data source=" + datafile);
             if ((connection != null) && (connection.State != ConnectionState.Closed))
             {
                 connection.Close();
                 connection.Dispose();
                 connection = null;
             }
+            connection = new SQLiteConnection("data source=" + datafile);
         }
-        
+
+
         private void CreateDatabase(string FileName)
         {
             SQLiteConnection.CreateFile(FileName);

@@ -1,0 +1,3 @@
+[submodule "ArachNGIN"]
+	path = ArachNGIN
+	url = https://github.com/Pavuucek/ArachNGIN.git

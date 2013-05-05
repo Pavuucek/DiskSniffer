@@ -12,8 +12,8 @@ namespace DiskSniffer.DataModel
         public DbSet<Media> Mediae { get; set; }
         public DbSet<MediaFile> MediaFiles { get; set; }
 
-        public DataContext()//(string connString) : base(connString)
+        /*public DataContext()//(string connString) : base(connString)
         {
-        }
+        }*/
     }
 }

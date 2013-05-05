@@ -54,8 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\DataContext.cs" />
+    <Compile Include="DataModel\ImageData.cs" />
     <Compile Include="DataModel\Media.cs" />
     <Compile Include="DataModel\MediaFile.cs" />
+    <Compile Include="DataModel\MediaFileType.cs" />
     <Compile Include="DataModel\MediaType.cs" />
     <Compile Include="Forms\DiskAdd.cs">
       <SubType>Form</SubType>

@@ -27,12 +27,13 @@ namespace DiskSniffer.Forms
             {
                 var fi = new FileInfo(filename);
                 var mf = new MediaFile();
-                mf.FileName = fi.Name;
-                mf.FilePath = fi.DirectoryName;
+                mf.Name = fi.Name;
+                mf.Path = fi.DirectoryName;
                 mf.Media = media;
                 Program.Data.MediaFiles.Add(mf);
             }
             Program.Data.SaveChanges();
+            MessageBox.Show("a");
             return true;
         }
 

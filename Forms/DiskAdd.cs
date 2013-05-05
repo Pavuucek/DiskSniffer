@@ -22,12 +22,23 @@ namespace DiskSniffer.Forms
         public bool ScanDisk(string strPath, Media media)
         {
             string[] filenames = Directory.GetFiles(strPath, "*.*", SearchOption.AllDirectories);
+            var mediaFiles = Program.Data.MediaFiles.ToList();
             foreach (string filename in filenames)
             {
                 var fi = new FileInfo(filename);
-
+                var mf = new MediaFile();
+                mf.FileName = fi.Name;
+                mf.FilePath = fi.DirectoryName;
+                mf.Media = media;
+                mediaFiles.Add(mf);
             }
+            Program.Data.SaveChanges();
             return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ScanDisk(@"c:\x", new Media());
         }
     }
 }

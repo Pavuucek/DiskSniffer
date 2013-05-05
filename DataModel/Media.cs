@@ -11,7 +11,7 @@ namespace DiskSniffer.DataModel
         /// <summary>
         /// 
         /// </summary>
-        public long MediumId { get; set; }
+        public long MediaId { get; set; }
 
         public DateTime Created { get; set; }
         public MediaType Type { get; set; }

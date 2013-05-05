@@ -22,7 +22,7 @@ namespace DiskSniffer.Forms
         public bool ScanDisk(string strPath, Media media)
         {
             string[] filenames = Directory.GetFiles(strPath, "*.*", SearchOption.AllDirectories);
-            var mediaFiles = Program.Data.MediaFiles.ToList();
+            //var mediaFiles = Program.Data.MediaFiles.ToList();
             foreach (string filename in filenames)
             {
                 var fi = new FileInfo(filename);
@@ -30,7 +30,7 @@ namespace DiskSniffer.Forms
                 mf.FileName = fi.Name;
                 mf.FilePath = fi.DirectoryName;
                 mf.Media = media;
-                mediaFiles.Add(mf);
+                Program.Data.MediaFiles.Add(mf);
             }
             Program.Data.SaveChanges();
             return true;

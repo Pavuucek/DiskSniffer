@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\Media.cs" />
+    <Compile Include="DataModel\MediaFile.cs" />
+    <Compile Include="DataModel\MediaType.cs" />
     <Compile Include="Forms\DiskAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +96,7 @@
   <ItemGroup>
     <Content Include="Resources\DiskSniffer.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(ProjectDir)Versioner.exe" "$(ProjectDir)Properties\AssemblyInfo.cs"</PreBuildEvent>

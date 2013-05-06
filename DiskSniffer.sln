@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskSniffer", "DiskSniffer.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Files", "ArachNGIN\ArachNGIN.Files\ArachNGIN.Files.csproj", "{21FE4EC9-B716-43BA-9124-08439AC740AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Components.Console", "ArachNGIN\ArachNGIN.Components.Console\ArachNGIN.Components.Console.csproj", "{24082240-398A-46E4-BF29-18B4B85EE9DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21FE4EC9-B716-43BA-9124-08439AC740AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24082240-398A-46E4-BF29-18B4B85EE9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24082240-398A-46E4-BF29-18B4B85EE9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24082240-398A-46E4-BF29-18B4B85EE9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24082240-398A-46E4-BF29-18B4B85EE9DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

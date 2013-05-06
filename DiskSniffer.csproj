@@ -106,6 +106,10 @@
     <Content Include="Resources\DiskSniffer.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ArachNGIN\ArachNGIN.Components.Console\ArachNGIN.Components.Console.csproj">
+      <Project>{24082240-398a-46e4-bf29-18b4b85ee9df}</Project>
+      <Name>ArachNGIN.Components.Console</Name>
+    </ProjectReference>
     <ProjectReference Include="ArachNGIN\ArachNGIN.Files\ArachNGIN.Files.csproj">
       <Project>{21fe4ec9-b716-43ba-9124-08439ac740ab}</Project>
       <Name>ArachNGIN.Files</Name>

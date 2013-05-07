@@ -92,15 +92,17 @@ namespace DiskSniffer.Forms
                 if(!subFile.IsDirectory)
                 {
                     //Program.Konzole.WriteNoTime(subFile.FilePath);
-                    var mf = new MediaFile();
-                    mf.Media = media;
-                    mf.Type = MediaFileType.InsideArchive;
-                    mf.Name = Path.GetFileName(subFile.FilePath);
-                        //Path.GetDirectoryName(parentFile.Path + parentFile.Name + "\\" + subFile.FilePath);
-                    mf.Path = parentFile.Path + "\\" + parentFile.Name + "\\" +
-                              Path.GetDirectoryName(subFile.FilePath).Replace("/", "\\");
-                    mf.Size = subFile.Size;
-                    mf.MimeType = GetMimeTypeFromExtension.GetMimeType(subFile.FilePath);
+                    var mf = new MediaFile
+                                 {
+                                     Media = media,
+                                     Type = MediaFileType.InsideArchive,
+                                     Name = Path.GetFileName(subFile.FilePath),
+                                     Path = parentFile.Path + "\\" + parentFile.Name + "\\" +
+                                            Path.GetDirectoryName(subFile.FilePath).Replace("/", "\\"),
+                                     Size = subFile.Size,
+                                     MimeType = GetMimeTypeFromExtension.GetMimeType(subFile.FilePath)
+                                 };
+                    //Path.GetDirectoryName(parentFile.Path + parentFile.Name + "\\" + subFile.FilePath);
                     Program.Data.MediaFiles.Add(mf);
                 }
                 progress.DoProgress();

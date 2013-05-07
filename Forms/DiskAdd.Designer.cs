@@ -37,6 +37,9 @@
             this.txtSerialNumber = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dlgScanPath = new System.Windows.Forms.FolderBrowserDialog();
+            this.chkScanArchives = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -112,11 +115,50 @@
             this.dlgScanPath.RootFolder = System.Environment.SpecialFolder.MyComputer;
             this.dlgScanPath.ShowNewFolderButton = false;
             // 
+            // chkScanArchives
+            // 
+            this.chkScanArchives.AutoSize = true;
+            this.chkScanArchives.Location = new System.Drawing.Point(27, 211);
+            this.chkScanArchives.Name = "chkScanArchives";
+            this.chkScanArchives.Size = new System.Drawing.Size(95, 17);
+            this.chkScanArchives.TabIndex = 8;
+            this.chkScanArchives.Text = "Scan Archives";
+            this.chkScanArchives.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Data CD",
+            "Audio CD",
+            "Video CD",
+            "DVD",
+            "BluRay",
+            "HD-DVD",
+            "Flash Disk",
+            "Hard Disk"});
+            this.comboBox1.Location = new System.Drawing.Point(15, 103);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 21);
+            this.comboBox1.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Disk Type:";
+            // 
             // DiskAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 267);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.chkScanArchives);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSerialNumber);
             this.Controls.Add(this.label2);
@@ -143,5 +185,8 @@
         private System.Windows.Forms.TextBox txtSerialNumber;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FolderBrowserDialog dlgScanPath;
+        private System.Windows.Forms.CheckBox chkScanArchives;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
     }
 }

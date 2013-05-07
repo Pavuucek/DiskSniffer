@@ -9,11 +9,18 @@ namespace DiskSniffer.DataModel
         /// Normální soubor jako každý jiný.
         /// </summary>
         NormalFile,
+
         /// <summary>
         /// Archiv (zip, rar, 7z, atd.)
         /// Projdeme ho celý.
         /// </summary>
-        Archive,
+        ArchiveParent,
+
+        /// <summary>
+        /// Soubor je uvnitø archivu.
+        /// </summary>
+        InsideArchive,
+
         /// <summary>
         /// Obrázek.
         /// Uložíme náhled.

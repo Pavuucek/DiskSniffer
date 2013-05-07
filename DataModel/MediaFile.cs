@@ -7,6 +7,7 @@ namespace DiskSniffer.DataModel
         public string Name { get; set; }
         public string Path { get; set; }
         public long Size { get; set; }
+        public string MimeType { get; set; }
         public MediaFileType Type { get; set; }
     }
 

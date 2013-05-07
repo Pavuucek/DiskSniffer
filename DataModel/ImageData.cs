@@ -4,6 +4,7 @@ namespace DiskSniffer.DataModel
     {
         public long ImageDataId { get; set; }
         public MediaFile MediaFile { get; set; }
+        public Media Media { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public string MimeType { get; set; }

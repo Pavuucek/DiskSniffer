@@ -9,8 +9,9 @@ namespace DiskSniffer.DataModel
 {
     public class DataContext : DbContext
     {
-        public DbSet<Media> Mediae { get; set; }
+        public DbSet<Media> Medias { get; set; }
         public DbSet<MediaFile> MediaFiles { get; set; }
+        public DbSet<ImageData> ImageDatas { get; set; }
 
         /*public DataContext()//(string connString) : base(connString)
         {

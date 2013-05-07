@@ -39,6 +39,9 @@
     <Reference Include="EntityFramework">
       <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>packages\sharpcompress.0.9\lib\net40\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -66,6 +69,12 @@
     <Compile Include="Forms\DiskAdd.Designer.cs">
       <DependentUpon>DiskAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DlgProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgProgress.Designer.cs">
+      <DependentUpon>DlgProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\DiskAdd.resx">
       <DependentUpon>DiskAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgProgress.resx">
+      <DependentUpon>DlgProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

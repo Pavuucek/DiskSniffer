@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 using System.Management.Instrumentation;
+using SharpCompress.Archive;
+
 namespace DiskSniffer.Forms
 {
     public partial class DiskAdd : Form
@@ -29,6 +31,10 @@ namespace DiskSniffer.Forms
             Program.Konzole.Write("Disk Scan: " + strPath);
             string[] filenames = Directory.GetFiles(strPath, "*.*", SearchOption.AllDirectories);
             //var mediaFiles = Program.Data.MediaFiles.ToList();
+            var progress = new DlgProgress();
+            progress.MaxProgress = filenames.Count();
+            progress.ProgressFormat = "Scanning disk... {0} of {1} files processed.";
+            progress.Show();
             foreach (string filename in filenames)
             {
                 var fi = new FileInfo(filename);
@@ -38,12 +44,14 @@ namespace DiskSniffer.Forms
                 mf.Media = media;
                 mf.Size = fi.Length;
                 mf.MimeType = GetMimeTypeFromExtension.GetMimeType(filename);
+                Program.Konzole.Write("Disk Scan: Adding " + mf.Path + "\\" + mf.Name);
                 switch (fi.Extension.ToLower())
                 {
                     case ".7z":
                     case ".rar":
                     case ".zip":
                         mf.Type = MediaFileType.ArchiveParent;
+                        ScanArchive(fi.FullName, media, mf);
                         break;
                     case ".bmp":
                     case ".png":
@@ -58,16 +66,54 @@ namespace DiskSniffer.Forms
                         mf.Type = MediaFileType.NormalFile;
                         break;
                 }
-                Program.Konzole.Write("Disk Scan: Added " + mf.Path + "\\" + mf.Name);
                 Program.Data.MediaFiles.Add(mf);
+                progress.DoProgress();
             }
+            Program.Konzole.Write("Validating...");
+            Program.Data.Configuration.ValidateOnSaveEnabled = true;
+            Program.Data.Configuration.AutoDetectChangesEnabled = true;
+            progress.Close();
             Program.Konzole.Write("Disk Scan Finished");
             return true;
         }
 
+        private static void ScanArchive(string strArchive, Media media, MediaFile parentFile)
+        {
+            var archive = ArchiveFactory.Open(strArchive);
+            Program.Konzole.Write(string.Format("Archive Scan: {0} files, type: {1}", archive.Entries.Count(),archive.Type.ToString()));
+            var progress = new DlgProgress();
+            progress.MaxProgress = archive.Entries.Count();
+            progress.ProgressFormat = string.Format("Scanning Archive \"{0}\"... {1}",Path.GetFileName(strArchive), "{0} of {1} files processed.");
+            progress.Show();
+            Program.Data.Configuration.ValidateOnSaveEnabled = false;
+            Program.Data.Configuration.AutoDetectChangesEnabled = false;
+            foreach(var subFile in archive.Entries)
+            {
+                if(!subFile.IsDirectory)
+                {
+                    //Program.Konzole.WriteNoTime(subFile.FilePath);
+                    var mf = new MediaFile();
+                    mf.Media = media;
+                    mf.Type = MediaFileType.InsideArchive;
+                    mf.Name = Path.GetFileName(subFile.FilePath);
+                        //Path.GetDirectoryName(parentFile.Path + parentFile.Name + "\\" + subFile.FilePath);
+                    mf.Path = parentFile.Path + "\\" + parentFile.Name + "\\" +
+                              Path.GetDirectoryName(subFile.FilePath).Replace("/", "\\");
+                    mf.Size = subFile.Size;
+                    mf.MimeType = GetMimeTypeFromExtension.GetMimeType(subFile.FilePath);
+                    Program.Data.MediaFiles.Add(mf);
+                }
+                progress.DoProgress();
+                Application.DoEvents();
+            }
+            progress.Close();
+            Program.Data.Configuration.ValidateOnSaveEnabled = true;
+            Program.Data.Configuration.AutoDetectChangesEnabled = true;
+            Application.DoEvents();
+        }
+
         private static ImageData ScanImage(string strFile, Media media, MediaFile mediaFile)
         {
-            
             var data = new ImageData {Media = media, MediaFile = mediaFile};
             var img = (Bitmap) Image.FromFile(strFile);
             data.ContentMimeType = GetMimeTypeFromContent.GetMimeType(strFile);

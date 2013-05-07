@@ -17,7 +17,7 @@ namespace DiskSniffer.Forms
             InitializeComponent();
         }
 
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddToolStripMenuItemClick(object sender, EventArgs e)
         {
             var diskAdd = new DiskAdd();
             diskAdd.ShowDialog();

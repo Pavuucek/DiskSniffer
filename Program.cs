@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ArachNGIN.Components.Console;
+using ArachNGIN.Components.Console.Misc;
 using DiskSniffer.DataModel;
 using DiskSniffer.Forms;
 namespace DiskSniffer
@@ -16,16 +18,28 @@ namespace DiskSniffer
         public static MainForm MainForm;
 
         public static DataContext Data = new DataContext();//("providername=System.Data.SQLite;provider connection string='data source=.\\OurDatabase.db'");
+
+        public static DebugConsole Konzole;
+
         /// <summary>
         /// Hlavní vstupní bod aplikace.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Konzole = new DebugConsole
+                          {
+                              AutoSave = ConsoleAutoSave.OnLineAdd,
+                              Caption = "Konzole",
+                              EchoCommands = true,
+                              ScreenLocation = ConsoleLocation.TopRight,
+                              ProcessInternalCommands = true,
+                              UsePlainView = true
+                          };
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
+            Konzole.Show();
             Application.Run(MainForm = new MainForm());
         }
     }

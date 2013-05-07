@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Imaging;
+using System.Globalization;
 using ArachNGIN.Files.Graphics;
 using ArachNGIN.Files.Mime;
 using DiskSniffer.DataModel;
@@ -12,7 +13,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Management;
+using System.Management.Instrumentation;
 namespace DiskSniffer.Forms
 {
     public partial class DiskAdd : Form
@@ -59,19 +61,17 @@ namespace DiskSniffer.Forms
                 Program.Konzole.Write("Disk Scan: Added " + mf.Path + "\\" + mf.Name);
                 Program.Data.MediaFiles.Add(mf);
             }
-            Program.Data.SaveChanges();
-            MessageBox.Show("a");
             Program.Konzole.Write("Disk Scan Finished");
             return true;
         }
 
-        private ImageData ScanImage(string strFile, Media media, MediaFile mediaFile)
+        private static ImageData ScanImage(string strFile, Media media, MediaFile mediaFile)
         {
             
             var data = new ImageData {Media = media, MediaFile = mediaFile};
             var img = (Bitmap) Image.FromFile(strFile);
-            data.MimeType = GetMimeTypeFromContent.GetMimeType(strFile);
-            Program.Konzole.Write("Image Scan: " + data.MimeType);
+            data.ContentMimeType = GetMimeTypeFromContent.GetMimeType(strFile);
+            Program.Konzole.Write("Image Scan: " + data.ContentMimeType);
             data.Width = img.Width;
             data.Height = img.Height;
             // zkouknout na velikost, pripadne zmensit na max 100x100;
@@ -83,9 +83,32 @@ namespace DiskSniffer.Forms
             return data;
         }
 
+        private string GetSerialNumber(string drive)
+        {
+            var disk = new
+                ManagementObject("win32_logicaldisk.deviceid=\"" + drive + ":\"");
+            return disk.Properties["VolumeSerialNumber"].Value.ToString();
+        }
+        private string GetVolumeLabel(string drive)
+        {
+            var disk = new
+                ManagementObject("win32_logicaldisk.deviceid=\"" + drive + ":\"");
+            return disk.Properties["VolumeName"].Value.ToString();
+        }
+
         private void Button1Click(object sender, EventArgs e)
         {
             ScanDisk(@"c:\x", new Media());
+            Program.Data.SaveChanges();
+        }
+
+        private void BtnScanMediaClick(object sender, EventArgs e)
+        {
+            if (dlgScanPath.ShowDialog() != DialogResult.OK) return;
+            txtMediaPath.Text = dlgScanPath.SelectedPath;
+            var volume = Directory.GetDirectoryRoot(dlgScanPath.SelectedPath)[0].ToString(CultureInfo.InvariantCulture);
+            txtSerialNumber.Text = GetSerialNumber(volume);
+            txtDiskName.Text = GetVolumeLabel(volume);
         }
     }
 }

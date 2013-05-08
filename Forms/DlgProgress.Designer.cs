@@ -35,9 +35,9 @@
             // lblStatus
             // 
             this.lblStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblStatus.Location = new System.Drawing.Point(0, 35);
+            this.lblStatus.Location = new System.Drawing.Point(0, 20);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(701, 13);
+            this.lblStatus.Size = new System.Drawing.Size(463, 13);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "label1";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -47,14 +47,14 @@
             this.progBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progBar.Location = new System.Drawing.Point(0, 0);
             this.progBar.Name = "progBar";
-            this.progBar.Size = new System.Drawing.Size(701, 35);
+            this.progBar.Size = new System.Drawing.Size(463, 20);
             this.progBar.TabIndex = 1;
             // 
             // DlgProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 48);
+            this.ClientSize = new System.Drawing.Size(463, 33);
             this.Controls.Add(this.progBar);
             this.Controls.Add(this.lblStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

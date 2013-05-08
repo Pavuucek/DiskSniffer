@@ -39,6 +39,7 @@ namespace DiskSniffer
                               UsePlainView = true
                           };
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
+            Data.Database.CreateIfNotExists();
             Konzole.Show();
             Application.Run(MainForm = new MainForm());
         }

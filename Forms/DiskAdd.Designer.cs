@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnScan = new System.Windows.Forms.Button();
             this.txtMediaPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnScanMedia = new System.Windows.Forms.Button();
@@ -40,17 +40,21 @@
             this.chkScanArchives = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.dtpCreated = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnScan
             // 
-            this.button1.Location = new System.Drawing.Point(357, 245);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1Click);
+            this.btnScan.Location = new System.Drawing.Point(124, 130);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(75, 23);
+            this.btnScan.TabIndex = 0;
+            this.btnScan.Text = "Scan files";
+            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.BtnScanClick);
             // 
             // txtMediaPath
             // 
@@ -118,7 +122,7 @@
             // chkScanArchives
             // 
             this.chkScanArchives.AutoSize = true;
-            this.chkScanArchives.Location = new System.Drawing.Point(27, 211);
+            this.chkScanArchives.Location = new System.Drawing.Point(15, 134);
             this.chkScanArchives.Name = "chkScanArchives";
             this.chkScanArchives.Size = new System.Drawing.Size(95, 17);
             this.chkScanArchives.TabIndex = 8;
@@ -151,11 +155,51 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Disk Type:";
             // 
+            // dtpCreated
+            // 
+            this.dtpCreated.Location = new System.Drawing.Point(208, 104);
+            this.dtpCreated.Name = "dtpCreated";
+            this.dtpCreated.Size = new System.Drawing.Size(184, 20);
+            this.dtpCreated.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(205, 88);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Date of creation:";
+            // 
+            // btnOk
+            // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Location = new System.Drawing.Point(276, 130);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 13;
+            this.btnOk.Text = "Save";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(357, 130);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // DiskAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 267);
+            this.ClientSize = new System.Drawing.Size(444, 163);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dtpCreated);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.chkScanArchives);
@@ -166,8 +210,12 @@
             this.Controls.Add(this.btnScanMedia);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMediaPath);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnScan);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DiskAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DiskAdd";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -176,7 +224,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnScan;
         private System.Windows.Forms.TextBox txtMediaPath;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnScanMedia;
@@ -188,5 +236,9 @@
         private System.Windows.Forms.CheckBox chkScanArchives;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dtpCreated;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

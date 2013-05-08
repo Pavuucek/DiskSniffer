@@ -1,7 +1,9 @@
 ﻿using System.Drawing.Imaging;
 using System.Globalization;
+using System.Transactions;
 using ArachNGIN.Files.Graphics;
 using ArachNGIN.Files.Mime;
+using ArachNGIN.Files.Streams;
 using DiskSniffer.DataModel;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,8 @@ namespace DiskSniffer.Forms
             InitializeComponent();
         }
 
+        private Media _currentMedia;
+
         public bool ScanDisk(string strPath, Media media)
         {
             Program.Konzole.Write("Disk Scan: " + strPath);
@@ -44,14 +48,14 @@ namespace DiskSniffer.Forms
                 mf.Media = media;
                 mf.Size = fi.Length;
                 mf.MimeType = GetMimeTypeFromExtension.GetMimeType(filename);
-                Program.Konzole.Write("Disk Scan: Adding " + mf.Path + "\\" + mf.Name);
+                Program.Konzole.Write("Disk Scan: Adding " + StringUtils.NoSlashesOnEnds(mf.Path + "\\" + mf.Name));
                 switch (fi.Extension.ToLower())
                 {
                     case ".7z":
                     case ".rar":
                     case ".zip":
                         mf.Type = MediaFileType.ArchiveParent;
-                        ScanArchive(fi.FullName, media, mf);
+                        if (chkScanArchives.Checked) ScanArchive(fi.FullName, media, mf);
                         break;
                     case ".bmp":
                     case ".png":
@@ -72,6 +76,7 @@ namespace DiskSniffer.Forms
             Program.Konzole.Write("Validating...");
             Program.Data.Configuration.ValidateOnSaveEnabled = true;
             Program.Data.Configuration.AutoDetectChangesEnabled = true;
+            //Program.Data.SaveChanges();
             progress.Close();
             Program.Konzole.Write("Disk Scan Finished");
             return true;
@@ -80,7 +85,7 @@ namespace DiskSniffer.Forms
         private static void ScanArchive(string strArchive, Media media, MediaFile parentFile)
         {
             var archive = ArchiveFactory.Open(strArchive);
-            Program.Konzole.Write(string.Format("Archive Scan: {0} files, type: {1}", archive.Entries.Count(),archive.Type.ToString()));
+            Program.Konzole.Write(string.Format("Archive Scan: {0} files, type: {1}", archive.Entries.Count(),archive.Type));
             var progress = new DlgProgress();
             progress.MaxProgress = archive.Entries.Count();
             progress.ProgressFormat = string.Format("Scanning Archive \"{0}\"... {1}",Path.GetFileName(strArchive), "{0} of {1} files processed.");
@@ -97,8 +102,10 @@ namespace DiskSniffer.Forms
                                      Media = media,
                                      Type = MediaFileType.InsideArchive,
                                      Name = Path.GetFileName(subFile.FilePath),
-                                     Path = parentFile.Path + "\\" + parentFile.Name + "\\" +
-                                            Path.GetDirectoryName(subFile.FilePath).Replace("/", "\\"),
+                                     Path =
+                                         StringUtils.NoSlashesOnEnds(parentFile.Path + "\\" + parentFile.Name + "\\" +
+                                                                     Path.GetDirectoryName(subFile.FilePath).Replace(
+                                                                         "/", "\\")),
                                      Size = subFile.Size,
                                      MimeType = GetMimeTypeFromExtension.GetMimeType(subFile.FilePath)
                                  };
@@ -112,6 +119,7 @@ namespace DiskSniffer.Forms
             Program.Data.Configuration.ValidateOnSaveEnabled = true;
             Program.Data.Configuration.AutoDetectChangesEnabled = true;
             Application.DoEvents();
+            //Program.Data.SaveChanges();
         }
 
         private static ImageData ScanImage(string strFile, Media media, MediaFile mediaFile)
@@ -131,23 +139,17 @@ namespace DiskSniffer.Forms
             return data;
         }
 
-        private string GetSerialNumber(string drive)
+        private static string GetHdSerialNumber(string drive)
         {
             var disk = new
                 ManagementObject("win32_logicaldisk.deviceid=\"" + drive + ":\"");
             return disk.Properties["VolumeSerialNumber"].Value.ToString();
         }
-        private string GetVolumeLabel(string drive)
+        private static string GetHdLabel(string drive)
         {
             var disk = new
                 ManagementObject("win32_logicaldisk.deviceid=\"" + drive + ":\"");
             return disk.Properties["VolumeName"].Value.ToString();
-        }
-
-        private void Button1Click(object sender, EventArgs e)
-        {
-            ScanDisk(@"c:\x", new Media());
-            Program.Data.SaveChanges();
         }
 
         private void BtnScanMediaClick(object sender, EventArgs e)
@@ -155,8 +157,40 @@ namespace DiskSniffer.Forms
             if (dlgScanPath.ShowDialog() != DialogResult.OK) return;
             txtMediaPath.Text = dlgScanPath.SelectedPath;
             var volume = Directory.GetDirectoryRoot(dlgScanPath.SelectedPath)[0].ToString(CultureInfo.InvariantCulture);
-            txtSerialNumber.Text = GetSerialNumber(volume);
-            txtDiskName.Text = GetVolumeLabel(volume);
+            txtSerialNumber.Text = GetHdSerialNumber(volume);
+            txtDiskName.Text = GetHdLabel(volume);
+        }
+
+        private void BtnScanClick(object sender, EventArgs e)
+        {
+            ScanDisk(txtMediaPath.Text, _currentMedia);
+        }
+
+        /// <summary>
+        /// Vyvolá tento dialog
+        /// </summary>
+        /// <returns>výsledek</returns>
+        public DialogResult Execute()
+        {
+            //var scope = new TransactionScope(TransactionScopeOption.Required);
+            _currentMedia = new Media();
+            _currentMedia = Program.Data.Medias.Add(_currentMedia);
+            var dr = ShowDialog();
+            if(DialogResult==DialogResult.OK)
+            {
+                _currentMedia.Name = txtDiskName.Text;
+                _currentMedia.Type = (MediaType)comboBox1.SelectedIndex;
+                _currentMedia.Created = dtpCreated.Value.Date;
+                Program.Data.SaveChanges();
+                //scope.Complete();
+            }
+            else
+            {
+                Program.Data=new DataContext();
+                //Program.Data.SaveChanges();
+                //scope.Dispose();
+            }
+            return dr;
         }
     }
 }

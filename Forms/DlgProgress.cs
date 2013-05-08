@@ -18,6 +18,9 @@ namespace DiskSniffer.Forms
 
         private void DlgProgressLoad(object sender, EventArgs e)
         {
+            // nastavit sirku na tretinu monitoru
+            Width = Screen.FromControl(this).WorkingArea.Width / 3;
+            CenterToScreen();
             foreach (var form in Application.OpenForms)
             {
                 if(form is DlgProgress && form!=this)
@@ -57,6 +60,7 @@ namespace DiskSniffer.Forms
         /// </summary>
         public void DoProgress()
         {
+            Application.DoEvents();
             progBar.PerformStep();
             lblStatus.Text = string.Format(_progressFormat, progBar.Value, progBar.Maximum);
             Application.DoEvents();

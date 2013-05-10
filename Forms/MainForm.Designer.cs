@@ -68,7 +68,7 @@
             this.lsbMedias.Name = "lsbMedias";
             this.lsbMedias.Size = new System.Drawing.Size(222, 238);
             this.lsbMedias.TabIndex = 1;
-            this.lsbMedias.SelectedIndexChanged += new System.EventHandler(this.lsbMedias_SelectedIndexChanged);
+            this.lsbMedias.SelectedValueChanged += new System.EventHandler(this.lsbMedias_SelectedValueChanged);
             // 
             // lstFiles
             // 

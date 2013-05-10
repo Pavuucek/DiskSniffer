@@ -30,7 +30,7 @@ namespace DiskSniffer.Forms
         {
             var diskAdd = new DiskAdd();
             diskAdd.Execute();
-            RefreshMainData();
+            //RefreshMainData();
         }
 
         private void MainFormLoad(object sender, EventArgs e)
@@ -38,19 +38,22 @@ namespace DiskSniffer.Forms
             RefreshMainData();
         }
 
-        private void lsbMedias_SelectedIndexChanged(object sender, EventArgs e)
+        private void lsbMedias_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (lsbMedias.SelectedValue == null) return;
+            if (!(lsbMedias.SelectedValue is long)) return; // proc proboha c# neumi operator "is not" srsly wtf?
+            MessageBox.Show(lsbMedias.SelectedValue.ToString());
             lstFiles.Nodes.Clear();
             var mediafiles = Program.Data.MediaFiles.ToList();
             var filelist = from l in Program.Data.MediaFiles
-                           where l.Media.MediaId == lsbMedias.SelectedIndex + 1
+                           where l.Media.MediaId == (long)lsbMedias.SelectedValue
                            select l;
             var pathlist = new List<string>();
-            foreach(var m in filelist)
+            foreach (var m in filelist)
             {
                 pathlist.Add(StringUtils.NoStartingSlash(m.Path + "\\" + m.Name));
             }
-            StringUtils.PopulateTreeViewByFiles(lstFiles,pathlist,'\\');
+            StringUtils.PopulateTreeViewByFiles(lstFiles, pathlist, '\\');
         }
 
     }

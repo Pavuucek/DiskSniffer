@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.EntityClient;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +28,12 @@ namespace DiskSniffer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Database.DefaultConnectionFactory = new System.Data.Entity.Infrastructure.SqlCeConnectionFactory(
+                "System.Data.SqlServerCe.4.0",
+                @".\",
+                @"Data Source=.\db.sdf");
+
             Konzole = new DebugConsole
                           {
                               AutoSave = ConsoleAutoSave.OnLineAdd,

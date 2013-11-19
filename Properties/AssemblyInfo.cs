@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Můžete zadat všechny hodnoty nebo nastavit výchozí očíslování sestavení a revize 
 // použitím znaku '*' jak je ukázáno dále:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.184")]
+[assembly: AssemblyVersion("1.0.0.192")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

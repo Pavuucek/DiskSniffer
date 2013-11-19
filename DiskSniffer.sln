@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskSniffer", "DiskSniffer.csproj", "{9F97A016-73F9-4705-A384-8100857E3D49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Files", "ArachNGIN\ArachNGIN.Files\ArachNGIN.Files.csproj", "{21FE4EC9-B716-43BA-9124-08439AC740AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Files", "ArachNGIN\Files\ArachNGIN.Files.csproj", "{21FE4EC9-B716-43BA-9124-08439AC740AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Components.Console", "ArachNGIN\ArachNGIN.Components.Console\ArachNGIN.Components.Console.csproj", "{24082240-398A-46E4-BF29-18B4B85EE9DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArachNGIN.Components.Console", "ArachNGIN\Components\Console\ArachNGIN.Components.Console.csproj", "{24082240-398A-46E4-BF29-18B4B85EE9DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

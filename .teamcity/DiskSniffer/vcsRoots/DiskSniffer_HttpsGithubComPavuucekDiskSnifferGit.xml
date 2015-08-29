@@ -16,7 +16,8 @@
 +:refs/heads/(hotfix/*)
 +:refs/heads/(master)
 +:refs/heads/(release)
-+:refs/heads/(support/*)]]></param>
++:refs/heads/(support/*)
++:refs/heads/*]]></param>
   <param name="url" value="https://github.com/pavuucek/DiskSniffer.git" />
   <param name="userForTags" value="Michal Kuncl &lt;michal.kuncl@gmail.com&gt;" />
   <param name="username" value="michal.kuncl@gmail.com" />

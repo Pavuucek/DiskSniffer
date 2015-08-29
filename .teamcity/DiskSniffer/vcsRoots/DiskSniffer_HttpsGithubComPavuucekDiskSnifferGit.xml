@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="31b31813-1369-48db-8b9a-3d726f3c25b1" type="jetbrains.git" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/9.0/project-config.xsd">
+  <name>https://github.com/pavuucek/DiskSniffer.git</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PASSWORD" />
+  <param name="branch" value="refs/heads/master" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="reportTagRevisions" value="true" />
+  <param name="secure:password" value="zxx6e1e9802cd9b51b9775d03cbe80d301b" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="teamcity:branchSpec"><![CDATA[-:refs/heads/gh-pages
++:refs/(pull/*)
++:refs/heads/(develop)
++:refs/heads/(feature/*)
++:refs/heads/(hotfix/*)
++:refs/heads/(master)
++:refs/heads/(release)
++:refs/heads/(support/*)]]></param>
+  <param name="url" value="https://github.com/pavuucek/DiskSniffer.git" />
+  <param name="userForTags" value="Michal Kuncl &lt;michal.kuncl@gmail.com&gt;" />
+  <param name="username" value="michal.kuncl@gmail.com" />
+  <param name="usernameStyle" value="FULL" />
+</vcs-root>
+
